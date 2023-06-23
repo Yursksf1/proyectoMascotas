@@ -20,7 +20,7 @@ from myapp import views
 
 app_name = "app"
 urlpatterns = [
-    path('', views.index),
+    path('', views.lists_persons),
     path('index2', views.index_2), 
 
     path('lists_persons', views.lists_persons, name='listado_personas'), 
