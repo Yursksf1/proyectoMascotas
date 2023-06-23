@@ -4,7 +4,7 @@ from django.http import JsonResponse
 from myapp.models import Person, Pet, Specie, Observation
 from rest_framework import viewsets, permissions
 from .models import Pet, Specie
-from .serializers import PetSerializer, SpecieSerializer
+from .serializers import PetSerializer, SpecieSerializer, PersonSerializer
 
 # Create your views here.
 
@@ -177,4 +177,10 @@ class PetViewSet(viewsets.ModelViewSet):
 class SpecieViewSet(viewsets.ModelViewSet):
     queryset = Specie.objects.all()
     serializer_class = SpecieSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
+class PersonViewSet(viewsets.ModelViewSet):
+    queryset = Person.objects.all()
+    serializer_class = PersonSerializer
     permission_classes = [permissions.IsAuthenticated]

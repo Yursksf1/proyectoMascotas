@@ -19,11 +19,12 @@ from django.urls import path, include
 from myapp import views
 
 from rest_framework.routers import DefaultRouter
-from myapp.views import PetViewSet, SpecieViewSet
+from myapp.views import PetViewSet, SpecieViewSet, PersonViewSet
 
 router = DefaultRouter()
 router.register('mascotas', PetViewSet, basename='mascotas')
 router.register('especies', SpecieViewSet, basename='especies')
+router.register('personas', PersonViewSet, basename='personas')
 
 
 app_name = "app"
