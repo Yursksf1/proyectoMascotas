@@ -15,8 +15,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from myapp import views
+
+from rest_framework.routers import DefaultRouter
+from myapp.views import PetViewSet, SpecieViewSet
+
+router = DefaultRouter()
+router.register('mascotas', PetViewSet, basename='mascotas')
+router.register('especies', SpecieViewSet, basename='especies')
+
 
 app_name = "app"
 urlpatterns = [
@@ -33,4 +41,6 @@ urlpatterns = [
     path('pet/<str:name>/observation', views.detail_pet_observation), 
     
     path('specie/<int:id>', views.detail_specie), 
+    path('api/', include(router.urls)),
+
 ]

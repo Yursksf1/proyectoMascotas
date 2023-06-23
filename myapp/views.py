@@ -1,8 +1,10 @@
 from django.shortcuts import render, HttpResponse
 from django.template import loader
 from django.http import JsonResponse
-
 from myapp.models import Person, Pet, Specie, Observation
+from rest_framework import viewsets, permissions
+from .models import Pet, Specie
+from .serializers import PetSerializer, SpecieSerializer
 
 # Create your views here.
 
@@ -165,3 +167,14 @@ def lists_persons_json(request):
     }
 
     return JsonResponse(context)
+
+
+class PetViewSet(viewsets.ModelViewSet):
+    queryset = Pet.objects.all()
+    serializer_class = PetSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+class SpecieViewSet(viewsets.ModelViewSet):
+    queryset = Specie.objects.all()
+    serializer_class = SpecieSerializer
+    permission_classes = [permissions.IsAuthenticated]
